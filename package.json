@@ -1,0 +1,71 @@
+{
+  "name": "debooklet",
+  "version": "1.0.0",
+  "description": "TypeScript CLI tool to reverse pdfbooklet - convert booklet PDFs back to normal page order",
+  "main": "dist/index.js",
+  "bin": {
+    "debooklet": "./dist/index.js"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "start": "node dist/index.js",
+    "dev": "tsc && node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build:exe": "pkg . --out-path ./build",
+    "build:exe:all": "npm run build:exe:win && npm run build:exe:mac && npm run build:exe:linux",
+    "build:exe:win": "pkg . --targets node18-win-x64 --out-path ./build",
+    "build:exe:mac": "pkg . --targets node18-macos-x64,node18-macos-arm64 --out-path ./build",
+    "build:exe:linux": "pkg . --targets node18-linux-x64 --out-path ./build"
+  },
+  "keywords": [
+    "pdf",
+    "booklet",
+    "debooklet",
+    "pdf-manipulation",
+    "pdf-tool",
+    "cli",
+    "typescript",
+    "pdf-lib",
+    "printing",
+    "page-order"
+  ],
+  "author": "Wilfred Springer",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/debooklet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YOUR_USERNAME/debooklet/issues"
+  },
+  "homepage": "https://github.com/YOUR_USERNAME/debooklet#readme",
+  "pkg": {
+    "scripts": "dist/**/*.js",
+    "assets": [],
+    "targets": [
+      "node18-linux-x64",
+      "node18-macos-x64",
+      "node18-macos-arm64",
+      "node18-win-x64"
+    ],
+    "outputPath": "build"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/yargs": "^17.0.24",
+    "pkg": "^5.8.1",
+    "typescript": "^5.0.0",
+    "vitest": "^3.2.4"
+  }
+}
