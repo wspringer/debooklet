@@ -29,23 +29,57 @@ When folded and nested, these sheets create a booklet with pages 1-16 in order.
 
 ## Installation
 
-### Global Installation
+### Option 1: Standalone Executable (Recommended - No dependencies!)
 
+Download the pre-built executable for your platform from [GitHub Releases](https://github.com/YOUR_USERNAME/debooklet/releases):
+
+**Linux (x64)**:
 ```bash
-npm install -g .
+wget https://github.com/YOUR_USERNAME/debooklet/releases/latest/download/debooklet-linux-x64
+chmod +x debooklet-linux-x64
+sudo mv debooklet-linux-x64 /usr/local/bin/debooklet
 ```
 
-After global installation, you can use `debooklet` from anywhere:
-
+**macOS (Intel)**:
 ```bash
+wget https://github.com/YOUR_USERNAME/debooklet/releases/latest/download/debooklet-macos-x64
+chmod +x debooklet-macos-x64
+sudo mv debooklet-macos-x64 /usr/local/bin/debooklet
+```
+
+**macOS (Apple Silicon)**:
+```bash
+wget https://github.com/YOUR_USERNAME/debooklet/releases/latest/download/debooklet-macos-arm64
+chmod +x debooklet-macos-arm64
+sudo mv debooklet-macos-arm64 /usr/local/bin/debooklet
+```
+
+**Windows**:
+1. Download `debooklet-win-x64.exe` from the [releases page](https://github.com/YOUR_USERNAME/debooklet/releases)
+2. Rename to `debooklet.exe` (optional)
+3. Add to your PATH or run directly
+
+### Option 2: npm/npx (Requires Node.js)
+
+**No installation - use npx**:
+```bash
+npx debooklet input.pdf output.pdf
+```
+
+**Global installation via npm**:
+```bash
+npm install -g debooklet
 debooklet input.pdf output.pdf
 ```
 
-### Local Development
+### Option 3: From Source (Development)
 
 ```bash
+git clone https://github.com/YOUR_USERNAME/debooklet.git
+cd debooklet
 npm install
 npm run build
+npm link  # Makes 'debooklet' available globally
 ```
 
 ## Usage
@@ -110,8 +144,52 @@ The tool uses the standard booklet pattern where:
 
 ## Requirements
 
-- Node.js 14 or higher
-- npm or yarn
+- **Standalone executables**: None! Just download and run
+- **npm/npx method**: Node.js 14 or higher
+- **From source**: Node.js 14+ and npm
+
+## Building Executables Locally
+
+If you want to build the standalone executables yourself:
+
+```bash
+# Install dependencies
+npm install
+
+# Build for all platforms
+npm run build:exe:all
+
+# Or build for specific platforms
+npm run build:exe:linux   # Linux x64
+npm run build:exe:mac     # macOS (Intel & Apple Silicon)
+npm run build:exe:win     # Windows x64
+
+# Executables will be in the ./build directory
+```
+
+## Publishing to npm
+
+To publish this package to npm (requires npm account):
+
+```bash
+# Update version in package.json
+npm version patch  # or minor, or major
+
+# Build the project
+npm run build
+
+# Publish to npm
+npm publish
+```
+
+## Creating a Release
+
+1. Update the version: `npm version <patch|minor|major>`
+2. Push the tag: `git push && git push --tags`
+3. GitHub Actions will automatically:
+   - Run tests
+   - Build executables for Linux, macOS, and Windows
+   - Create a GitHub Release with all binaries
 
 ## License
 
