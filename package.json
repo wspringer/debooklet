@@ -20,9 +20,9 @@
     "test:watch": "vitest",
     "build:exe": "pkg . --out-path ./build",
     "build:exe:all": "npm run build:exe:win && npm run build:exe:mac && npm run build:exe:linux",
-    "build:exe:win": "pkg . --targets node18-win-x64 --out-path ./build",
-    "build:exe:mac": "pkg . --targets node18-macos-x64,node18-macos-arm64 --out-path ./build",
-    "build:exe:linux": "pkg . --targets node18-linux-x64 --out-path ./build"
+    "build:exe:win": "pkg . --targets node18-win-x64 --output build/debooklet-win-x64.exe",
+    "build:exe:mac": "pkg . --targets node18-macos-x64 --output build/debooklet-macos-x64 && pkg . --targets node18-macos-arm64 --output build/debooklet-macos-arm64",
+    "build:exe:linux": "pkg . --targets node18-linux-x64 --output build/debooklet-linux-x64"
   },
   "keywords": [
     "pdf",
